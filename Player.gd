@@ -51,8 +51,6 @@ func _physics_process(delta):
 	else:
 		is_diging = false
 		set_digging_cells(null)
-		
-	print(is_diging)
 	
 	if is_diging and _digging_cells == null:
 		var direction: Vector2
