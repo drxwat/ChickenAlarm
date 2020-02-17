@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Dig07.wav-af2e38408639fe047e17619688e3be52.sample"
+
+[deps]
+
+source_file="res://sfx/Dig07.wav"
+dest_files=[ "res://.import/Dig07.wav-af2e38408639fe047e17619688e3be52.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
