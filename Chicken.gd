@@ -50,4 +50,3 @@ func changeDirection(new_direction: bool):
 		direction = new_direction
 		sprite.set_flip_h(new_direction)
 
-

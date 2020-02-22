@@ -19,6 +19,9 @@ var digging_cell = null
 var digging_time = CELL_DIGGING_TIME
 var direction = DIRECTION.Right
 
+onready var sfx_chicken_1 := $"SFX/chicken-1"
+onready var sfx_chicken_2 := $"SFX/chicken-2"
+
 onready var ground_tm: Node2D = get_tree().get_root().get_node("Root/Ground")
 onready var dig_player := $SFX/Digging
 onready var jump_player := $SFX/Jump
@@ -101,7 +104,9 @@ func _physics_process(delta):
 
 
 func _on_EnemyDetector_body_shape_entered(body_id, body, body_shape, area_shape):
+	if (rand_range(-1, 1) > 0):
+		sfx_chicken_1.play(0)
+	else:
+		sfx_chicken_2.play(0)
 	emit_signal("on_chicken_catch", body)
-#	body.queue_free()
-#	print(body)
 

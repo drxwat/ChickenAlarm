@@ -22,7 +22,7 @@ margin_left = 27.8183
 margin_top = 41.9776
 margin_right = 103.818
 margin_bottom = 83.9776
-rect_scale = Vector2( 0.97596, 0.878929 )
+rect_scale = Vector2( 1.17596, 0.878929 )
 texture = ExtResource( 2 )
 patch_margin_left = 55
 patch_margin_top = 42
@@ -32,20 +32,26 @@ __meta__ = {
 }
 
 [node name="ChickensNum" type="Label" parent="NinePatchRect"]
-margin_left = 7.14251
+margin_left = 5.00918
 margin_top = 9.74373
-margin_right = 47.1425
+margin_right = 45.0092
 margin_bottom = 23.7437
-rect_scale = Vector2( 1.56691, 1.64928 )
-text = "10"
+rect_scale = Vector2( 1.08622, 1.64928 )
+text = "10/10"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect" type="TextureRect" parent="NinePatchRect"]
-margin_left = 39.2757
-margin_top = 9.76815
-margin_right = 79.2757
-margin_bottom = 49.7682
-rect_scale = Vector2( 0.807181, 0.752946 )
+margin_left = 52.3662
+margin_top = 7.36116
+margin_right = 92.3662
+margin_bottom = 47.3612
+rect_scale = Vector2( 0.511238, 0.752946 )
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NinePatchRect2" type="NinePatchRect" parent="."]
 margin_left = 577.548
