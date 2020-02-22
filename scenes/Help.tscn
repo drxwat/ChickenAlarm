@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/Help.gd" type="Script" id=1]
+[ext_resource path="res://textures/help.png" type="Texture" id=2]
+
+[node name="Help" type="Control"]
+pause_mode = 2
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -281.5
+margin_right = 281.5
+margin_bottom = 546.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -113.5
+margin_top = -29.4368
+margin_right = 113.5
+margin_bottom = -15.4368
+text = "Hold Spacebar and arrow for digging"
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -77.0
+margin_top = -20.0
+text = "Exit Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

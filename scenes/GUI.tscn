@@ -1,25 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://textures/chicken-1.png" type="Texture" id=1]
 [ext_resource path="res://textures/counter-bg.png" type="Texture" id=2]
 [ext_resource path="res://textures/clock.png" type="Texture" id=3]
+[ext_resource path="res://textures/information.png" type="Texture" id=4]
+[ext_resource path="res://scenes/GUI.gd" type="Script" id=5]
 
 [node name="GUI" type="Control"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -300.0
-margin_right = 208.0
-margin_bottom = 120.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-margin_left = 27.8183
-margin_top = 41.9776
+margin_left = 100.0
+margin_top = 50.0
 margin_right = 103.818
 margin_bottom = 83.9776
 rect_scale = Vector2( 1.17596, 0.878929 )
@@ -54,10 +51,12 @@ __meta__ = {
 }
 
 [node name="NinePatchRect2" type="NinePatchRect" parent="."]
-margin_left = 577.548
-margin_top = 41.9776
-margin_right = 653.548
-margin_bottom = 83.9776
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -150.54
+margin_top = 50.0
+margin_right = -74.5397
+margin_bottom = 92.0
 rect_scale = Vector2( 1.29596, 0.878929 )
 texture = ExtResource( 2 )
 patch_margin_left = 55
@@ -88,3 +87,19 @@ texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -125.125
+margin_top = -90.1663
+margin_right = -62.1252
+margin_bottom = -33.1663
+icon = ExtResource( 4 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
