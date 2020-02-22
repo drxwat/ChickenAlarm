@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+enum DIRECTION { Right, Left }
+
 const UP := Vector2(0, -1)
 const CELL_DIGGING_TIME = 0.25
 
@@ -8,19 +10,29 @@ export var speed := 200
 export var jump_height := -200
 export var hole_size := Vector2(7,7)
 
+signal on_chicken_catch
+
 var motion := Vector2()
 var is_diging = false
 var is_in_underground = false
-var _digging_cells setget set_digging_cells
+var digging_cell = null
 var digging_time = CELL_DIGGING_TIME
+var direction = DIRECTION.Right
 
 onready var ground_tm: Node2D = get_tree().get_root().get_node("Root/Ground")
 onready var dig_player := $SFX/Digging
 onready var jump_player := $SFX/Jump
+onready var sprite := $Sprite
 
 
-func set_digging_cells(value):
-	_digging_cells = value
+func changeDirection(new_direction: int):
+	if (direction != new_direction):
+		direction = new_direction
+		sprite.set_flip_h(new_direction)
+
+
+func set_digging_cell(cell):
+	digging_cell = cell
 	digging_time = CELL_DIGGING_TIME
 
 func _physics_process(delta):
@@ -31,13 +43,15 @@ func _physics_process(delta):
 	motion.x = 0
 	if Input.is_action_pressed("ui_right"):
 		motion.x = speed
+		changeDirection(DIRECTION.Right)
 	if Input.is_action_pressed("ui_left"):
 		motion.x = -speed
+		changeDirection(DIRECTION.Left)
 	if is_in_underground and Input.is_action_pressed("ui_down"):
 		motion.y = speed
 	if is_in_underground and Input.is_action_pressed("ui_up"):
 		motion.y = -speed
-		
+	
 	
 	if not is_in_underground and is_on_floor():
 		if Input.is_action_just_pressed("ui_up"):
@@ -50,37 +64,44 @@ func _physics_process(delta):
 		is_diging = true
 	else:
 		is_diging = false
-		set_digging_cells(null)
+		set_digging_cell(null)
 	
-	if is_diging and _digging_cells == null:
-		var direction: Vector2
-		var center: Vector2
+	if is_diging and digging_cell == null:
+		var dir: Vector2
+		var border: Vector2
 		if Input.is_action_pressed("ui_down"):
-			direction = Vector2(0, 1)
-			center = global_position + Vector2(0, hole_size.y)
+			dir = Vector2(0, 1)
+			border = global_position + Vector2(0, hole_size.y)
 		elif Input.is_action_pressed("ui_up"):
-			direction = Vector2(0, -1)
-			center = global_position + Vector2(0, -hole_size.y)
+			dir = Vector2(0, -1)
+			border = global_position + Vector2(0, -hole_size.y)
 		elif Input.is_action_pressed("ui_left"):
-			direction = Vector2(-1, 0)
-			center = global_position + Vector2(-hole_size.x, 0)
+			dir = Vector2(-1, 0)
+			border = global_position + Vector2(-hole_size.x, 0)
 		elif Input.is_action_pressed("ui_right"):
-			direction = Vector2(1, 0)
-			center = global_position + Vector2(hole_size.x, 0)
+			dir = Vector2(1, 0)
+			border = global_position + Vector2(hole_size.x, 0)
 		
-		if direction:
-			var cells = ground_tm.get_direction_cells(direction, center, hole_size.x * 2)
-			set_digging_cells(cells)
-	
-	if is_diging and _digging_cells != null:
+		if dir:
+			var cell = ground_tm.get_direction_cell(dir, border)
+			set_digging_cell(cell)
+
+	if is_diging and digging_cell != null:
 		digging_time -= delta
 		if digging_time < 0:
-			var removed = ground_tm.remove_first_active_cell(_digging_cells)
+			var removed = ground_tm.remove_cell(digging_cell)
 			if removed:
 				if dig_player.playing:
 					dig_player.stop()
 				dig_player.play()
-			set_digging_cells(null)
+			set_digging_cell(null)
 
 	motion = move_and_slide(motion, UP)
+
+
+
+func _on_EnemyDetector_body_shape_entered(body_id, body, body_shape, area_shape):
+	emit_signal("on_chicken_catch", body)
+#	body.queue_free()
+#	print(body)
 

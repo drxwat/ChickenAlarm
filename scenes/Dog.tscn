@@ -1,0 +1,52 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://textures/dog/dog-5.png" type="Texture" id=1]
+[ext_resource path="res://textures/dog/dog-3.png" type="Texture" id=2]
+[ext_resource path="res://textures/dog/dog-idle-1.png" type="Texture" id=3]
+[ext_resource path="res://textures/dog/dog-4.png" type="Texture" id=4]
+[ext_resource path="res://textures/dog/dog-6.png" type="Texture" id=5]
+[ext_resource path="res://textures/dog/dog-attk-2.png" type="Texture" id=6]
+[ext_resource path="res://textures/dog/dog-attk-4.png" type="Texture" id=7]
+[ext_resource path="res://textures/dog/dog-attk-3.png" type="Texture" id=8]
+[ext_resource path="res://textures/dog/dog-attk-1.png" type="Texture" id=9]
+[ext_resource path="res://textures/dog/dog-7.png" type="Texture" id=10]
+[ext_resource path="res://textures/dog/dog-8.png" type="Texture" id=11]
+[ext_resource path="res://Dog.gd" type="Script" id=12]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "walk",
+"speed": 8.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 40, 28 )
+
+[node name="Dog" type="KinematicBody2D"]
+position = Vector2( 257.893, -32.6314 )
+collision_layer = 4
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
+animation = "walk"
+frame = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
+shape = SubResource( 4 )

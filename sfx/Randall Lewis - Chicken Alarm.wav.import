@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Randall Lewis - Chicken Alarm.wav-9579a86c8d8f5dd9032270b2db177573.sample"
+
+[deps]
+
+source_file="res://sfx/Randall Lewis - Chicken Alarm.wav"
+dest_files=[ "res://.import/Randall Lewis - Chicken Alarm.wav-9579a86c8d8f5dd9032270b2db177573.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

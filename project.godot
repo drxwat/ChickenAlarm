@@ -18,3 +18,8 @@ _global_script_class_icons={
 config/name="fox-holes"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
