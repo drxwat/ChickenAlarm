@@ -7,6 +7,7 @@ var _tween: Tween
 var win = false
 var lose = false
 
+
 onready var chickens_num := $Chickens.get_child_count()
 onready var game_over_root: Control
 onready var game_over_label := $CanvasLayer/GameOver/Label
@@ -109,11 +110,15 @@ func _on_GameOver_restart_the_game():
 
 
 func _on_Help_help_opened():
+	if win or lose:
+		return
 	$CanvasLayer/GameOver.visible = false
 	$CanvasLayer/GUI.visible = false
 
 
 func _on_Help_help_closed():
+	if win or lose:
+		return
 	$CanvasLayer/GameOver.visible = true
 	$CanvasLayer/GUI.visible = true
 
